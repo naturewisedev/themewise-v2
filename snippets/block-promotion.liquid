@@ -1,0 +1,15 @@
+<div class="ap-parallax {{ settings.promotion_class }} {% if settings.animated_enable %}wow animated {{ settings.animated_7 }}{% endif %}">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12 col-sm-12">
+        {% assign promotion_title = settings.promotion_title %}
+        {% assign promotion_description = settings.promotion_description %}
+        {% assign promotion_button = settings.promotion_button %}
+        {% assign promotion_link = settings.promotion_link %}
+        <h2 class="p-title">{{ promotion_title }}</h2>
+        <p class="p-desc">{{ promotion_description }}</p>
+        <p><a class="btn btn-outline btn-lg" href="{{ promotion_link }}">{{ promotion_button }}</a></p>
+      </div>
+    </div>
+  </div>
+</div>

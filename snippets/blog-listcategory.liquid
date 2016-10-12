@@ -1,0 +1,32 @@
+<div class="col-sm-12 col-xs-12">
+	<h4 class="title-heading">{{ 'blogs.article.list_category_post' | t }}</h4>
+	<div class="related-article-content">
+      <div class="row">
+		{% for article_extra in blogs[blog.handle].articles limit:3 %}
+			<div class="col-sm-4 col-xs-12">
+              {% if article.image %}
+              <div class="image">
+                {% assign imageSize = settings.home_blogs_imagesize %}
+                <img src="{{ article_extra.image | img_url: imageSize }}" class="img-responsive" alt="{{ article_extra.title }}" />
+              </div>
+              {% endif %}
+              <div class="article-meta">
+                <h3><a href="{{ article_extra.url }}" title="">{{ article_extra.title }}</a></h3>
+                <span class="blog-created">
+                  <span class="icon-calendar">
+                    <time datetime="{{ article_extra.published_at | date: '%Y-%m-%d' }}">{{ article_extra.published_at | date: format: 'month_day_year' }}</time>
+                  </span>
+                </span>
+                <span class="blog-ctncomment">
+                  <span class="icon-comment">
+                    <a href="{{ article_extra.url }}#comments">
+                      / {{ 'blogs.comments.comments_with_count' | t: count: article_extra.comments_count }}
+                    </a>
+                  </span>
+                </span>
+              </div>
+			</div>
+		{% endfor %}
+      </div>
+	</div>
+</div>

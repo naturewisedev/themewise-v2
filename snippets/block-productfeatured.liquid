@@ -1,0 +1,20 @@
+{% assign productHome = all_products[settings.simpleproduct] %}
+{% assign productHighlight = pages[settings.simple_product_hightlight] %}
+{% assign productImage = 'featuredProduct.jpg'%}
+<div id="productfeatured">
+  	<div class="boxApollo">
+      {% if title_block != blank %}
+      <div class="apolloHeading">
+        <h3 class="page-subheading heading-style1">
+          <span class="subheading-text">{{ title_block }}</span>
+          <span class="description">{{ title_description }}</span>
+        </h3>
+      </div>
+      {% endif %}	
+      <div class="apolloDescription row clearfix">
+        <div class="col-sm-4">{{ productHome.description }}</div>        
+        <div class="col-sm-4"><img class="img-responsive" alt="{{ productHome.title }}" src="{{ productImage | asset_url }}" /></div>        
+        <div class="col-sm-4">{{ productHighlight.content }}</div>
+      </div>
+	</div>
+</div>

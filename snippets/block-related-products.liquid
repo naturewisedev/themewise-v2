@@ -1,0 +1,85 @@
+{% assign number_of_related_products = settings.product_related_column %}
+{% if collection == null or collection.handle == 'frontpage' or collection.handle == 'all' %}
+{% assign found_a_collection = false %}
+{% for c in product.collections %}
+	{% if found_a_collection == false and c.handle != 'frontpage' and c.handle != 'all' and c.all_products_count > 1 %}
+		{% assign found_a_collection = true %}
+		{% assign collection = c %}
+	{% endif %}
+{% endfor %}
+{% endif %}
+{% assign produccount = columns_product %}
+<div id="productrelated{{ block-related-products }}" class="products_block exclusive block" >
+  	{% if title_block != blank %}
+        <div class="apolloHeading">
+        <h3 class="page-subheading heading-style1">
+          <span class="subheading-text">{{ title_block }}</span>
+        </h3>
+      </div>
+  	{% else %}
+  		<h4 class="title_block">
+            <span>{{ 'products.product.product_related' | t }}</span>
+        </h4>
+  	{% endif %}
+	<div class="block_content">
+      	<div class="container">
+		{% if settings.product_related_type != 'boostrap_carousel' %}
+			
+		{% endif %}
+				{% assign collection_produclists = collection.products %}
+				{% if settings.product_related_type == 'boostrap_carousel' %}
+					{% capture product_carousel %}product_releted_{{ block-related-products }}{% endcapture %}
+					{% include 'product-carousel' %}
+				{% else %}
+					{% include 'product-carousel-owl' %}
+				{% endif %}
+      	{% if settings.product_related_type != 'boostrap_carousel' %}
+			
+		{% endif %}
+      	</div>
+	</div>
+</div>
+<script type="text/javascript">
+	$(document).ready(function() {
+		{% if settings.product_related_type == 'boostrap_carousel' %}
+	    $('#productrelated{{ block-related-products }}').each(function(){
+	        $(this).carousel({
+	            pause: 'hover',
+	            interval: {{ settings.product_related_interval }}
+	        });
+	    });
+	    {% else %}
+	    	$('#productrelated{{ block-related-products }} .owl-carousel').each(function(){
+    		  	$(this).owlCarousel({
+    		      	items : {{ produccount }},
+    		      	lazyLoad : true,
+    		      	navigation : true,
+	              	addClassActive: true,
+              		afterInit : OwlLoaded,
+			        afterAction : SetOwlCarouselFirstLast,
+              		{% if produccount == 1 %}
+              			itemsDesktop: [1199, 1],
+                        itemsDesktopSmall: [979, 1],
+                        itemsTablet: [768, 1],
+                        itemsTabletSmall: [480, 1],
+                        itemsMobile: [360, 1],
+              		{% elsif produccount < 4 %}
+              			itemsDesktop: [1199, 2],
+                        itemsDesktopSmall: [979, 2],
+                        itemsTablet: [768, 2],
+                        itemsTabletSmall: [480, 1],
+                        itemsMobile: [360, 1],
+              		{% endif %}
+              		navigationText : ["{{ 'products.carousel.preview' | t }}", "{{ 'products.carousel.next' | t }}"]
+		      	}); 
+    		});
+  			function SetOwlCarouselFirstLast(el){
+			  	el.find(".owl-item").removeClass("first");
+			  	el.find(".owl-item.active").first().addClass("first");
+
+			  	el.find(".owl-item").removeClass("last");
+			  	el.find(".owl-item.active").last().addClass("last");
+			};
+	    {% endif %}
+	});
+</script>

@@ -1,0 +1,21 @@
+<div class="boxApollo">
+  <div class="apolloHeading">
+    <h3 class="page-subheading heading-default">
+      <span class="subheading-text">{{ title_block }}</span>
+      <span class="description">{{ title_description }}</span>
+    </h3>
+  </div>
+  {% assign image_box = "home_html1.png" %}
+  {% assign title_box = settings.featuredbox1_title %}
+  {% assign content_box = settings.featuredbox1_content %}
+  {% include 'block-featuredbox' %}    
+  {% assign image_box = "home_html2.png" %}
+  {% assign title_box = settings.featuredbox2_title %}
+  {% assign content_box = settings.featuredbox2_content %}
+  {% include 'block-featuredbox' %}
+  {% assign image_box = "home_html3.png" %}
+  {% assign title_box = settings.featuredbox3_title %}
+  {% assign content_box = settings.featuredbox3_content %}
+  {% include 'block-featuredbox' %}
+  <a class="btn btn-lg btn-outline" href="{{ homehtml_link }}">{{ homehtml_link_txt }}</a>
+</div>

@@ -1,0 +1,22 @@
+{% include 'breadcrumb' %}
+<section id="columns" class="columns-container">
+    <div class="row">
+      <section id="center_column" class="col-sm-12 col-xs-12">
+        <div class="page-wrap">
+          <div class="page-content">            
+            <div class="rte">
+              {% include 'shortcode' load: page.content %}
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+</section>
+<script type="text/javascript">
+  window.onload = function() {
+    $('.counterUp').counterUp({
+      delay: 10,
+      time: 1000
+    });
+  }
+</script>

@@ -1,0 +1,18 @@
+<div class="block-footer clearfix">
+  <div class="textblock">
+    <div class="media">
+      <div class="pull-left">
+      <i class="fa fa-{{ fhtml_icon }}"></i>
+      </div>      
+      <div class="media-body">
+        {% if block-footerhtml == 'left'%}
+        <h3>{{ fhtml_title }}</h3>
+        <p>{{ fhtml_content }}</p>
+        {% elsif block-footerhtml == 'right' %}        
+        <p>{{ fhtml_content }}</p>
+        <h3>{{ fhtml_title }}</h3>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>

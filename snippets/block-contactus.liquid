@@ -1,0 +1,78 @@
+<div class="block-footer clearfix block_contact_form">
+  <h3 class="title_block">{{ settings.contact_infor_title }}</h3>
+  <div class="block_content">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="box-contact-info">          
+          <div class="text-big-2 text-white">
+            {{ settings.contact_infor_des }}
+          </div>                                
+          <ul class="list-unstyled">
+            {% if settings.contact_infor_address != blank %}
+            <li>
+              <i class="fa fa-home"></i>{{ settings.contact_infor_address }}
+            </li>
+            {% endif %}
+            {% if settings.contact_infor_phone != blank %}
+            <li>
+              <i class="fa fa-mobile-phone"></i>{{ settings.contact_infor_phone }}
+            </li>
+            {% endif %}
+            {% if settings.contact_infor_email != blank %}
+            <li>
+              <i class="fa fa-envelope"></i>{{ settings.contact_infor_email }}
+            </li>
+            {% endif %}
+            {% if settings.contact_infor_website != blank %}
+            <li>
+              <i class="fa fa-globe"></i>{{ settings.contact_infor_website }}
+            </li>
+            {% endif %}
+          </ul>
+        </div>        
+      </div>
+      <div class="col-md-6">
+        {% form 'contact' %}
+        {% if form.posted_successfully? %}
+        <p class="alert alert-success">
+          {{ 'contact.form.post_success' | t }}
+        </p>
+        {% endif %}
+        {{ form.errors | default_errors }}
+        <div class="contact-form-box">
+          <fieldset>            
+            <div class="row">
+              <div class="col-xs-12 col-sm-12">
+                <div class="form-group">
+                  {% assign name_attr = 'contact.form.name' | t | handle %}                    
+                  <input class="form-control grey" type="text" id="ContactFormName" name="contact[{{ name_attr }}]" placeholder="{{ 'contact.form.name' | t }}" autocomplete="off" value="{% if form[name_attr] %}{{ form[name_attr] }}{% elsif customer %}{{ customer.name }}{% endif %}">
+                </div>
+              </div>
+              <div class="col-xs-12 col-sm-12">
+                <div class="form-group">                    
+                  <input class="form-control grey" type="email" id="ContactFormEmail" name="contact[email]" placeholder="{{ 'contact.form.email' | t }}" autocomplete="off" value="{% if form.email %}{{ form.email }}{% elsif customer %}{{ customer.email }}{% endif %}">
+                </div>
+              </div>
+              <div class="col-xs-12 col-sm-12">
+                <div class="form-group">
+                  {% assign name_attr = 'contact.form.phone' | t | handle %}                    
+                  <input class="form-control grey" type="tel" id="ContactFormPhone" name="contact[{{ name_attr }}]" placeholder="{{ 'contact.form.phone' | t }}" autocomplete="off" pattern="[0-9\-]*" value="{% if form[name_attr] %}{{ form[name_attr] }}{% elsif customer %}{{ customer.phone }}{% endif %}">
+                </div>
+              </div>
+              <div class="col-xs-12 col-sm-12">
+                <div class="form-group">
+                  <label for="ContactFormMessage" class="label--hidden">{{ 'contact.form.message' | t }}</label>
+                  <textarea class="form-control" rows="3" id="ContactFormMessage" name="contact[body]" placeholder="{{ 'contact.form.message' | t }}">{% if form.body %}{{ form.body }}{% endif %}</textarea>
+                </div>
+              </div>
+            </div>
+            <div class="submit">
+              <input type="submit" class="btn btn-block btn-lg btn-outline" value="{{ 'contact.form.send' | t }}">
+            </div>
+          </fieldset>
+        </div>
+        {% endform %}
+      </div>
+    </div>
+  </div>
+</div>

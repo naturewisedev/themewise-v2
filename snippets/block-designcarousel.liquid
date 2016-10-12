@@ -1,0 +1,74 @@
+<div class="boxApollo {% if settings.animated_enable %}wow animated {{ settings.animated_4 }}{% endif %}">
+  {% if title_block != blank %}
+  <div class="apolloHeading">
+    <h3 class="page-subheading heading-style1">
+      <span class="subheading-text">{{ title_block }}</span>
+      <span class="description">{{ title_description }}</span>
+    </h3>
+  </div>
+  {% endif %}	
+  <div class="block block-designs">
+    <div class="block_content">
+      <div class="owl-carousel owl-loading slide">      	
+        {% for i in (1..5) %}
+          {% assign design = 'design_' | append: i %}
+          {% assign design_image = 'design_image_' | append: i | append: '.jpg' %}
+          {% assign design_title = 'design_title_' | append: i %}          	
+          {% assign design_description = 'design_description_' | append: i %}
+          {% assign design_button = 'design_button_' | append: i %}          
+          {% if settings[design] %}
+          <div class="item media">            
+            {% include 'block-designitem' with i %}
+          </div>
+          {% endif %}
+        {% endfor %}          
+      </div>
+    </div>
+  </div>
+  {% for video in (1..5) %}
+    {% assign design = 'design_' | append: video %}
+    {% assign video_url = 'videourl_' | append: video %}
+    {% if settings[design] %}
+    <div class="modal fade videoModal" id="videoModal{{ video }}" tabindex="-1" role="dialog">
+      <div class="modal-dialog modal-lg" role="document">
+        <iframe style="border: 0px;" width="900" height="506" src="{{ settings[video_url] }}" allowfullscreen></iframe>
+      </div>
+    </div>
+    {% endif %}
+  {% endfor %}
+</div>
+<script type="text/javascript">
+  $(document).ready(function() {
+    $('.block-designs .owl-carousel').owlCarousel({
+      items: {{ columns_product }},
+      lazyLoad: true,
+      navigation: true,
+      addClassActive: true,
+      afterAction: SetOwlCarouselFirstLast,
+      afterInit: OwlLoaded,
+      {% if product_interval != blank %}
+      autoPlay: {{ product_interval }},
+      {% endif %}
+      {% if columns_product == 1 %}
+      itemsDesktop: [1199, 1],
+      itemsDesktopSmall: [979, 1],
+      itemsTablet: [768, 1],
+      itemsTabletSmall: [480, 1],
+      itemsMobile: [360, 1],
+      {% elsif columns_product < 4 %}
+      itemsDesktop: [1199, 2],
+      itemsDesktopSmall: [979, 2],
+      itemsTablet: [768, 2],
+      itemsTabletSmall: [480, 2],
+      itemsMobile: [360, 1],
+      {% else %}
+      itemsDesktop: [1199, 3],
+      itemsDesktopSmall: [979, 2],
+      itemsTablet: [768, 2],
+      itemsTabletSmall: [480, 2],
+      itemsMobile: [360, 1],
+      {% endif %}
+      navigationText: ["{{ 'products.carousel.preview' | t }}", "{{ 'products.carousel.next' | t }}"]
+    });
+  });
+</script>

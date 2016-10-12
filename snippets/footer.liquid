@@ -1,0 +1,73 @@
+<div class="footer-container">  	
+    <section id="footertop" class="footer-top"> 
+      <div class="container">
+        <div class="footer_top_wrap">
+          <div class="row {% if settings.animated_enable %}wow animated {{ settings.animated_10 }}{% endif %}">
+            <div class="col-lg-8 col-md-8 col-sm-6 col-xs-12">
+              {% if settings.fhtml_left_enable %}
+              {% assign fhtml_icon = settings.fhtml_left_icon %}
+              {% assign fhtml_title = settings.fhtml_left_title %}
+              {% assign fhtml_content = settings.fhtml_left_content %}
+              {% include 'block-footerhtml' with 'left' %}   
+              {% endif %}
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">              
+              {% if settings.fhtml_right_enable %}
+              {% assign fhtml_icon = settings.fhtml_right_icon %}
+              {% assign fhtml_title = settings.fhtml_right_title %}
+              {% assign fhtml_content = settings.fhtml_right_content %}
+              {% include 'block-footerhtml' with 'right' %}                
+              {% endif %}
+            </div>
+          </div>
+        </div>        
+      </div>
+    </section>  	
+    <section id="footercenter" class="footer-center">
+        <div class="container">
+            <div class="footer-center-wrap">
+                <div class="row">                  
+                  	<div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 {% if settings.animated_enable %}wow animated {{ settings.animated_11 }}{% endif %}">
+                      {% if settings.fcontact_enable %}
+                      	{% include 'block-contactus'%}
+                      {% endif %}
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 {% if settings.animated_enable %}wow animated {{ settings.animated_12 }}{% endif %}">
+                      <div class="block-footer clearfix">
+                        <h3 class="title_block">{{ settings.footer_blocktext_title }}</h3>
+                        <div class="textblock">
+                          <div class="row">
+                            <div class="col-md-6">
+                              {% if settings.footer_quicklinks_enable %}
+                              {% assign footerlinks_name = settings.footer_quicklinks_linklist %}
+                              {% assign footerlinks_title = settings.footer_quicklinks_title %}
+                              {% include 'block-footerlinks' with '1' %}
+                              {% endif %}
+                            </div>
+                            <div class="col-md-6">
+                              {% if settings.footer_quicklinks_enable_1 %}
+                              {% assign footerlinks_name = settings.footer_quicklinks_linklist_1 %}
+                              {% assign footerlinks_title = settings.footer_quicklinks_title_1 %}
+                              {% include 'block-footerlinks' with '2' %}
+                              {% endif %}
+                            </div>
+                          </div>                                                    
+                        </div>
+                      </div>
+                      <div class="social-footer">
+                      	{% include 'block-social' %}
+                      </div>
+                    </div>                    
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="footernav" class="footer-nav">
+        <div class="container">
+            <div id="powered" class="powered {% if settings.animated_enable %}wow animated {{ settings.animated_13 }}{% endif %}">
+                <p class="text-left">&copy; Copyright {{ "now" | date: "%Y" }} {{ shop.name }}.</p>
+                <p class="text-left">{{ powered_by_link }}</p>
+            </div>
+        </div>
+    </section>
+</div>

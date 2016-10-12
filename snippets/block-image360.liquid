@@ -1,0 +1,25 @@
+{% if title_block != blank %}
+<div class="apolloHeading">
+  <h3 class="page-subheading heading-style1">
+    <span class="subheading-text">{{ title_block }}</span>
+    <span class="description">{{ title_description }}</span>
+  </h3>
+</div>
+{% endif %}
+<div class="block block-rotateimages">
+  <div class="block_content">
+  	<div class="rotate">
+      <div id="rotateimages">        
+      </div>
+    </div>
+  </div>
+</div>
+<script type="text/javascript">
+		jQuery(document).ready(function($){
+		  $("#rotateimages").spritespin({
+            source: ["{{ '0.png' | asset_url }}","{{ '1.png' | asset_url }}","{{ '2.png' | asset_url }}","{{ '3.png' | asset_url }}","{{ '4.png' | asset_url }}","{{ '5.png' | asset_url }}","{{ '6.png' | asset_url }}","{{ '7.png' | asset_url }}","{{ '8.png' | asset_url }}","{{ '9.png' | asset_url }}","{{ '10.png' | asset_url }}","{{ '11.png' | asset_url }}","{{ '12.png' | asset_url }}","{{ '13.png' | asset_url }}","{{ '14.png' | asset_url }}","{{ '15.png' | asset_url }}","{{ '16.png' | asset_url }}","{{ '17.png' | asset_url }}","{{ '18.png' | asset_url }}","{{ '19.png' | asset_url }}","{{ '20.png' | asset_url }}"],
+		    width   : 877,
+			height  : 732,
+		  });
+		})		
+</script>

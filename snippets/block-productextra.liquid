@@ -1,0 +1,17 @@
+<div class="image-productextra {% if settings.animated_enable %}wow animated {{ settings.animated_2 }}{% endif %}">
+  <img class="img-responsive" alt="{{ setings.productextra_txtfirst }}" src="{{ 'productextra.jpg' | asset_url }}" />
+  <div class="productextra-caption">
+    {% if settings.productextra_txtfirst != blank %}
+    <div class="text_first" style="color:{{ settings.productextra_txtfirst_color }}">{{ settings.productextra_txtfirst }}</div>    
+    {% endif %}
+    {% if settings.productextra_title != blank %}
+    <h3 style="color: {{ settings.productextra_title_color }}">{{ settings.productextra_title }}</h3>
+    {% endif %}
+    {% if settings.productextra_description != blank %}
+    <p style="color: {{ settings.productextra_description_color }}">{{ settings.productextra_description }}</p>
+    {% endif %}
+    {% if settings.productextra_button != blank %}
+    <a class="btn btn-lg btn-outline">{{ settings.productextra_button }}</a>
+    {% endif %}
+  </div>
+</div>

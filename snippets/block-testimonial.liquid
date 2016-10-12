@@ -1,0 +1,62 @@
+{% assign tesInPage = settings.testimonials_itempage | plus:0 %}
+{% assign tesColumns = settings.testimonials_columntab | plus:0 %}
+{% assign titleBlock = settings.testimonials_title %}
+{% assign isAvatar = settings.testimonials_useavatar %}
+{% assign id = "" %}
+
+<!--block-testimonial.liquid-->
+<div id="testimonials{{ id }}" class="block block-testimonial">
+    {% if titleBlock != blank %}
+  		<div class="apolloHeading">
+        	<h3 class="page-subheading heading-style1">
+              <span class="subheading-text">{{ title_block }}</span>
+              <span class="description">{{ title_description }}</span>
+            </h3>
+  		</div>
+    {% endif %}
+    <div class="block_content">
+        <div class="owl-row">
+            <div class="owl-carousel">
+                {% for i in (1..10) %}
+                    {% capture itemEnable %}testimonials_item{{ i }}_enable{% endcapture %}
+                    {% capture itemAvatar %}testimonial_{{ i }}.png{% endcapture %}
+                    {% capture itemName %}testimonials_item{{ i }}_name{% endcapture %}
+                    {% capture itemRaing %}testimonials_item{{ i }}_star{% endcapture %}
+              		{% capture itemItem %}testimonials_item{{ i }}_title{% endcapture %}
+                    {% capture itemReview %}testimonials_item{{ i }}_review{% endcapture %}
+                    {% capture itemJob %}testimonials_item{{ i }}_job{% endcapture %}                    
+                    {% if settings[itemEnable] %}
+                        <div class="item">
+                            {% include 'testimonial-item' %}
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#testimonials{{ id }} .owl-carousel').each(function(){
+            $(this).owlCarousel({
+                items : {{ tesColumns }},
+                lazyLoad : true,
+                slideSpeed : 1000,
+                paginationSpeed : 800,
+                rewindSpeed : 1000,
+                itemsDesktop: [1199, 2],
+                itemsDesktopSmall: [979, 1],
+                itemsTablet: [768, 1],
+                itemsTabletSmall: [480, 1],
+                itemsMobile: [360, 1],
+                {% if settings.testimonials_autoplay %}
+                    autoPlay : {{ settings.testimonials_speed }},
+                {% else %}
+                    autoPlay : false,
+                {% endif %}
+                stopOnHover : true,
+                navigation : true
+            }); 
+        });
+    });
+</script>

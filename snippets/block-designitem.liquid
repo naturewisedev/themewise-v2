@@ -1,0 +1,11 @@
+<div class="image pull-left hidden-sm hidden-xs">
+  <img src="{{ design_image | asset_url }}" class="attachment-full size-full" alt="videoitem{{ block-designitem }}" />
+</div>
+<div class="content body-media text-center">
+  <h3 class="design_title">{{ settings[design_title] }}</h3>
+  <div class="design_description">{{ settings[design_description] }}</div>
+  <div class="button-video">
+    <button type="button" class="btn btn-outline btn-lg" data-toggle="modal" data-target="#videoModal{{ block-designitem }}">
+      <i class="fa fa-play-circle-o"></i>{{ settings[design_button] }}</button>
+  </div>
+</div>
